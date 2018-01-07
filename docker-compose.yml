@@ -8,7 +8,8 @@ services:
     ports:
       - "5433:5432"
   genre-service:
-    image: blajan/genres-api
+    image: g-test
+    #image: blajan/genres-api
     environment:
       - KUMULUZEE_DATASOURCES0_CONNECTIONURL=jdbc:postgresql://postgres:5432/genre
     ports:

@@ -1,6 +1,8 @@
 package com.fri.musicbook;
 
 import com.fri.musicbook.GenresBean;
+import org.eclipse.microprofile.metrics.annotation.Metered;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -25,6 +27,7 @@ public class GenresResource {
     @Inject
     private GenresBean genresBean;
 
+    @Metered(name = "getGenres")
     @GET
     public Response getGenres() {
 System.out.println("getVsiGen");
@@ -33,6 +36,7 @@ System.out.println("getVsiGen");
         return Response.ok(genres).build();
     }
 
+    @Metered(name = "getGenreId")
     @GET
     @Path("/{genreId}")
     public Response getGenre(@PathParam("genreId") String genreId) {
@@ -46,6 +50,8 @@ System.out.println("getVsiGen");
         return Response.status(Response.Status.OK).entity(genre).build();
     }
 
+    @Timed(name = "getGenresFiltered_time")
+    @Metered(name = "getGenresFiltered")
     @GET
     @Path("/filtered")
     public Response getGenresFiltered() {
@@ -57,6 +63,7 @@ System.out.println("getVsiGen");
         return Response.status(Response.Status.OK).entity(genres).build();
     }
 
+    @Metered(name = "createGenre")
     @POST
     public Response createGenre(Genre genre) {
 
@@ -73,6 +80,7 @@ System.out.println("getVsiGen");
         }
     }
 
+    @Metered(name = "putGenre")
     @PUT
     @Path("{genreId}")
     public Response putGenre(@PathParam("genreId") String genreId, Genre genre) {
@@ -89,6 +97,7 @@ System.out.println("getVsiGen");
         }
     }
 
+    @Metered(name = "deleteGenre")
     @DELETE
     @Path("{genreId}")
     public Response deleteGenre(@PathParam("genreId") String genreId) {

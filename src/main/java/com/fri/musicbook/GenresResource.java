@@ -19,7 +19,7 @@ import java.util.List;
 @Path("/genres")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Log(LogParams.METRICS)
+//@Log(LogParams.METRICS)
 public class GenresResource {
 
 
@@ -37,6 +37,15 @@ System.out.println("getVsiGen");
         List<Genre> genres = genresBean.getGenres();
 
         return Response.ok(genres).build();
+    }
+
+    @Path("/switchEnabled")
+    @GET
+    public Response switchEnabled() {
+        System.out.println("switcha");
+        boolean en = genresBean.switchEnabled();
+
+        return Response.ok(en).build();
     }
 
     @Metered(name = "getGenreId")

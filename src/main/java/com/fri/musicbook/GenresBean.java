@@ -42,8 +42,8 @@ public class GenresBean {
     //private Optional<String> basePath;
 
     @Inject
-    @DiscoverService(value = "artist-service", version = "*")
-    private String basePath;
+    @DiscoverService(value = "artist-service")
+    private Optional<String> basePath;
 
     //private String basePath = "http://172.17.0.1:8084";
 
@@ -70,6 +70,11 @@ public class GenresBean {
 
         return query.getResultList();
 
+    }
+
+    public boolean switchEnabled(){
+        restProperties.setArtistServiceEnabled(restProperties.isArtistServiceEnabled());
+        return restProperties.isArtistServiceEnabled();
     }
 
     public Genre getGenre(String genreId) {

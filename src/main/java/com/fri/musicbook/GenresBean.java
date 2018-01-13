@@ -84,12 +84,13 @@ public class GenresBean {
         if (genre == null) {
             throw new NotFoundException();
         }
-
+        /*
         if (!restProperties.isArtistServiceEnabled()) {
             List<Artist> artists = genresBean.getArtists(genreId);
             System.out.print(artists);
             genre.setArtists(artists);
         }
+        */
         return genre;
 
     }

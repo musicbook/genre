@@ -15,9 +15,9 @@ public class RestProperties {
     public boolean isArtistServiceEnabled() {
         return artistServiceEnabled;
     }
-/*
+
     public void setArtistServiceEnabled(boolean artistServiceEnabled) {
         this.artistServiceEnabled = artistServiceEnabled;
     }
-*/
+
 }

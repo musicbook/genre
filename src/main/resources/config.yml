@@ -56,5 +56,5 @@ kumuluzee:
          </Configuration>'
 rest-properties:
   external-dependencies:
-    band-service:
+    artist-service:
       enabled: true

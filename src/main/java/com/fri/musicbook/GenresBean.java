@@ -52,8 +52,8 @@ public class GenresBean {
         //objectMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 	}
 
-   // @Inject
-    //private RestProperties restProperties;
+    @Inject
+    private RestProperties restProperties;
 
 
     @PersistenceContext(unitName = "genres-jpa")
@@ -75,11 +75,11 @@ public class GenresBean {
             throw new NotFoundException();
         }
 
-       // if (restProperties.isArtistServiceEnabled()) {
+        if (!restProperties.isArtistServiceEnabled()) {
             List<Artist> artists = genresBean.getArtists(genreId);
             System.out.print(artists);
             genre.setArtists(artists);
-        //}
+        }
         return genre;
 
     }

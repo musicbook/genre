@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.kumuluz.ee.discovery.annotations.DiscoverService;
+import com.kumuluz.ee.discovery.annotations.DiscoverService;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
 import org.apache.http.HttpEntity;
@@ -40,7 +41,11 @@ public class GenresBean {
    // @DiscoverService(value = "artis-service", environment = "dev", version = "*")
     //private Optional<String> basePath;
 
-    private String basePath = "http://172.17.0.1:8084/v1/";
+    @Inject
+    @DiscoverService(value = "artist-service", version = "*")
+    private String basePath;
+
+    //private String basePath = "http://172.17.0.1:8084";
 
     @Inject
     private GenresBean genresBean;
@@ -98,7 +103,7 @@ public class GenresBean {
 
         try {
             System.out.println("try"+basePath+"|..|"+genreId);
-            HttpGet request = new HttpGet(basePath + "artists/filtered?filter=genreId:EQ:"+genreId);
+            HttpGet request = new HttpGet(basePath + "/v1/artists/filtered?filter=genreId:EQ:"+genreId);
             if (request==null)System.out.println("req je null");
 	    else System.out.println("req ni null");
 	    

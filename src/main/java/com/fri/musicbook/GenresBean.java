@@ -48,8 +48,10 @@ public class GenresBean {
     //private String basePath = "http://172.17.0.1:8084";
 
     public String getBasePath(){
+        System.out.println("In function getBasePath");
         return basePath;
     }
+
     @Inject
     private GenresBean genresBean;
 
@@ -94,7 +96,13 @@ public class GenresBean {
             genre.setArtists(artists);
         }
         */
-
+        Artist art = new Artist();
+        art.setGenreId("2");
+        art.setId("1");
+        art.setName("haba");
+        List<Artist> arts = new ArrayList<Artist>();
+        arts.add(art);
+        genre.setArtists(arts);
         //MOGOČE JE KRIV /HEALTH SERVLET V config
 
         return genre;

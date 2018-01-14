@@ -19,7 +19,7 @@ import java.util.List;
 @Path("/genres")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-//@Log(LogParams.METRICS)
+@Log
 public class GenresResource {
 
 

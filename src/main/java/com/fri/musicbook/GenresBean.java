@@ -47,9 +47,20 @@ public class GenresBean {
 
     //private String basePath = "http://172.17.0.1:8084";
 
-    public String getBasePath(){
-        System.out.println("In function getBasePath");
-        return basePath;
+    public String getBasePath() {
+        try {
+            System.out.println("In function getBasePath");
+            HttpGet request = new HttpGet(basePath + "/v1/artists/");
+            HttpResponse response = httpClient.execute(request);
+
+            HttpEntity entity = response.getEntity();
+            if (entity==null) return "null";
+            return entity.toString();
+
+        } catch (Exception e) {
+            System.out.println("Exception"+e.getMessage());
+            return e.getMessage();
+        }
     }
 
     @Inject

@@ -42,7 +42,7 @@ public class GenresBean {
     //private Optional<String> basePath;
 
     @Inject
-    @DiscoverService(value = "artist-service")
+    @DiscoverService("artist-service")
     private Optional<String> basePath;
 
     //private String basePath = "http://172.17.0.1:8084";
@@ -109,7 +109,7 @@ public class GenresBean {
     }
 
     public List<Artist> getArtists(String genreId) {
-
+/*
         try {
             System.out.println("try"+basePath+"|..|"+genreId);
             HttpGet request = new HttpGet(basePath + "/v1/artists/filtered?filter=genreId:EQ:"+genreId);
@@ -150,6 +150,7 @@ public class GenresBean {
             //log.error(msg);
             throw new InternalServerErrorException(msg);
         }
+        */
         return new ArrayList<>();
 
     }

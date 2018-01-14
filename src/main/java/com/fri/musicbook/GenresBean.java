@@ -47,6 +47,9 @@ public class GenresBean {
 
     //private String basePath = "http://172.17.0.1:8084";
 
+    public String getBasePath(){
+        return basePath;
+    }
     @Inject
     private GenresBean genresBean;
 

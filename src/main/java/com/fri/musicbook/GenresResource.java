@@ -48,6 +48,12 @@ System.out.println("getVsiGen");
         return Response.ok(en).build();
     }
 
+    @Path("/path")
+    @GET
+    public Response getPath() {
+       return Response.ok(genresBean.getBasePath()).build();
+    }
+
     @Metered(name = "getGenreId")
     @GET
     @Path("/{genreId}")

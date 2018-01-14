@@ -43,7 +43,7 @@ public class GenresBean {
 
     @Inject
     @DiscoverService("artist-service")
-    private Optional<String> basePath;
+    private String basePath;
 
     //private String basePath = "http://172.17.0.1:8084";
 

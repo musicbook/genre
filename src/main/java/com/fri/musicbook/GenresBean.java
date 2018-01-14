@@ -106,7 +106,7 @@ public class GenresBean {
             System.out.print(artists);
             genre.setArtists(artists);
         }
-        */
+
         Artist art = new Artist();
         art.setGenreId("2");
         art.setId("1");
@@ -114,6 +114,11 @@ public class GenresBean {
         List<Artist> arts = new ArrayList<Artist>();
         arts.add(art);
         genre.setArtists(arts);
+
+        */
+        List<Artist> artists = genresBean.getArtists(genreId);
+        System.out.print(artists);
+        genre.setArtists(artists);
         //MOGOČE JE KRIV /HEALTH SERVLET V config
 
         return genre;
@@ -131,7 +136,7 @@ public class GenresBean {
     }
 
     public List<Artist> getArtists(String genreId) {
-/*
+
         try {
             System.out.println("try"+basePath+"|..|"+genreId);
             HttpGet request = new HttpGet(basePath + "/v1/artists/filtered?filter=genreId:EQ:"+genreId);
@@ -172,7 +177,7 @@ public class GenresBean {
             //log.error(msg);
             throw new InternalServerErrorException(msg);
         }
-        */
+
         return new ArrayList<>();
 
     }

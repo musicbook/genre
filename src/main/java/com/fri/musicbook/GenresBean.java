@@ -91,6 +91,9 @@ public class GenresBean {
             genre.setArtists(artists);
         }
         */
+
+        //MOGOČE JE KRIV /HEALTH SERVLET V config
+
         return genre;
 
     }

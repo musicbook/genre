@@ -50,6 +50,10 @@ public class GenresBean {
 
     //private String basePath = "http://172.17.0.1:8084";
 
+    @CircuitBreaker
+    @Timeout(value = 2, unit = ChronoUnit.SECONDS)
+    @Fallback(fallbackMethod = "getBasePathFallback")
+    @CommandKey("get-basepath")
     public String getBasePath() {
         try {
             System.out.println("In function getBasePath");
@@ -159,8 +163,8 @@ public class GenresBean {
             if (status >= 200 && status < 300) {
                 System.out.println("v status");
                 HttpEntity entity = response.getEntity();
-                System.out.println(entity+"||"+entity.getContent()+"||"+entity.toString()+"||");
                 if (entity != null) {
+                    System.out.println(entity+"||"+entity.getContent()+"||"+entity.toString()+"||");
                     //System.out.println(EntityUtils.toString(entity));
                     List<Artist> ars = objectMapper.readValue(EntityUtils.toString(entity), new TypeReference<List<Artist>>(){});
                     System.out.println("json:"+ars);
@@ -266,5 +270,10 @@ public class GenresBean {
         System.out.println("FALLBACK | Query:"+query+" not available at the moment");
         return new ArrayList<>();
     }
+    public String getBasePathFallback(String query) {
+        //System.out.println("FALLBACK | Query:"+query+" not available at the moment");
+        return "Storitev trenutno ni na voljo";
+    }
+
 
 }

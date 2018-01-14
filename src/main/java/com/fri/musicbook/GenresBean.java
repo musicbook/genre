@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.kumuluz.ee.discovery.annotations.DiscoverService;
 import com.kumuluz.ee.discovery.annotations.DiscoverService;
+import com.kumuluz.ee.fault.tolerance.annotations.*;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
 import org.apache.http.HttpEntity;
@@ -25,12 +26,14 @@ import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 @RequestScoped
+@GroupKey("genres")
 public class GenresBean {
 
     private ObjectMapper objectMapper;
@@ -93,8 +96,9 @@ public class GenresBean {
         return restProperties.isArtistServiceEnabled();
     }
 
+
     public Genre getGenre(String genreId) {
-        System.out.println("Bean:getGenre");
+       // System.out.println("Bean:getGenre");
         Genre genre = em.find(Genre.class, genreId);
 
         if (genre == null) {
@@ -135,6 +139,10 @@ public class GenresBean {
         return genres;
     }
 
+    @CircuitBreaker
+    @Timeout(value = 2, unit = ChronoUnit.SECONDS)
+    @Fallback(fallbackMethod = "findArtistsFallback")
+    @CommandKey("get-artists")
     public List<Artist> getArtists(String genreId) {
 
         try {
@@ -252,6 +260,11 @@ public class GenresBean {
     private void rollbackTx() {
         if (em.getTransaction().isActive())
             em.getTransaction().rollback();
+    }
+
+    public List<Artist> findArtistsFallback(String query) {
+        System.out.println("FALLBACK | Query:"+query+" not available at the moment");
+        return new ArrayList<>();
     }
 
 }

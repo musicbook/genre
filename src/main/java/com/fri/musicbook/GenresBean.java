@@ -99,7 +99,7 @@ public class GenresBean {
     }
 
     public boolean switchEnabled(){
-        restProperties.setArtistServiceEnabled(restProperties.isArtistServiceEnabled());
+        restProperties.setArtistServiceEnabled(!restProperties.isArtistServiceEnabled());
         return restProperties.isArtistServiceEnabled();
     }
 

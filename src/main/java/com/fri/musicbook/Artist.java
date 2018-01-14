@@ -8,7 +8,7 @@ import java.util.List;
 @Entity(name = "artist")
 @NamedQueries(value =
         {
-                @NamedQuery(name = "Artist.getAll", query = "SELECT c FROM artist c")
+                @NamedQuery(name = "com.fri.musicbook.Artist.getAll", query = "SELECT c FROM artist c")
         })
 @UuidGenerator(name = "idGenerator")
 public class Artist {
@@ -20,9 +20,11 @@ public class Artist {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "genreId")
+    @Column(name = "genre_id")
     private String genreId;
 
+    @Transient
+    private String albums;
 
     public String getId() {
         return id;
@@ -46,5 +48,13 @@ public class Artist {
 
     public void setGenreId(String genreId) {
         this.genreId = genreId;
+    }
+
+    public String getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(String albums) {
+        this.albums = albums;
     }
 }

@@ -111,13 +111,13 @@ public class GenresBean {
         if (genre == null) {
             throw new NotFoundException();
         }
-        /*
-        if (!restProperties.isArtistServiceEnabled()) {
+
+        if (restProperties.isArtistServiceEnabled()) {
             List<Artist> artists = genresBean.getArtists(genreId);
             System.out.print(artists);
             genre.setArtists(artists);
         }
-
+/*
         Artist art = new Artist();
         art.setGenreId("2");
         art.setId("1");
@@ -126,12 +126,12 @@ public class GenresBean {
         arts.add(art);
         genre.setArtists(arts);
 
-        */
+
         List<Artist> artists = genresBean.getArtists(genreId);
         System.out.print(artists);
         genre.setArtists(artists);
         //MOGOČE JE KRIV /HEALTH SERVLET V config
-
+*/
         return genre;
 
     }

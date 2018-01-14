@@ -40,11 +40,11 @@ public class GenresBean {
    // @Inject
    // @DiscoverService(value = "artis-service", environment = "dev", version = "*")
     //private Optional<String> basePath;
-
+/*
     @Inject
     @DiscoverService("artist-service")
     private String basePath;
-
+*/
     //private String basePath = "http://172.17.0.1:8084";
 
     @Inject
